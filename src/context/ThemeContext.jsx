@@ -24,7 +24,7 @@ export function ThemeProvider({ children }) {
     const toggleTheme = () => {
         setTheme(prevTheme => {
             const newTheme = prevTheme === 'light' ? 'dark' : 'light'
-            localStorage.setItem('theme : ', newTheme)
+            localStorage.setItem('theme', newTheme)
             return newTheme
             // مقدار جدید برمی‌گردد و در state می‌نشیند.
         })
