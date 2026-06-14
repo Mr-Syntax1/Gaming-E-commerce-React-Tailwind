@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/nav';
 import HomePage from './Pages/HomePage'
 import Footer from './components/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast'
 import CartPage from './Pages/CartPage';
 import ShopPage from './Pages/ShopPage';
@@ -13,13 +13,31 @@ import BlogPage from './Pages/BlogPage';
 import ContactPage from './Pages/ContactPage'
 
 function App() {
-  const [cart, setCart] = useState([])
+
+  const [cart, setCart] = useState(() => {
+    // فقط در کلاینت (مرورگر) اجرا شود
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('shoppingCart')
+      return savedCart ? JSON.parse(savedCart) : []
+    }
+    return []
+  })
+
+  // توابع ذخیره و بازیابی از localStorage
+  const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem('shoppingCart', JSON.stringify(cart))
+  }
+
+  const loadCartFromLocalStorage = () => {
+    const savedCart = localStorage.getItem('shoppingCart')
+    return savedCart ? JSON.parse(savedCart) : []
+  }
 
   // تابع اضافه کردن به سبد خرید
   const addToCart = (product) => {
 
     setCart((prevCart) => {
-      // ✅ اصلاح: عملگر مقایسه درست
+      // اصلاح: عملگر مقایسه درست
       const existingItem = prevCart.find(item => item.id === product.id)
 
       if (existingItem) {
@@ -74,6 +92,11 @@ function App() {
       )
     )
   }
+
+
+  useEffect(() => {
+    saveCartToLocalStorage(cart)
+  }, [cart])
 
   // تعداد کل محصولات توی سبد خرید
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0)
