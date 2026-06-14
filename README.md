@@ -10,6 +10,12 @@
 
 </div>
 
+<div align="center">
+  <a href="https://gamingstore-ir.netlify.app">
+    <img src="https://img.shields.io/badge/🎮_Gaming_Store_Demo-🌐_gamingstore--ir.netlify.app-ff8c00?style=for-the-badge&logo=netlify" alt="Gaming Store Demo">
+  </a>
+</div>
+
 ---
 
 <div align="center">
