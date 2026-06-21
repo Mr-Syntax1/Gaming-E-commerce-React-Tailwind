@@ -10,9 +10,7 @@
 
 </div>
 
-<div align="center">
-# Sam Shop - live demo
-</div>
+<h3 align="center">Live Demo</h3>
 
 <div align="center">
   <a href="https://gamingstore-ir.netlify.app">
